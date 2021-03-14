@@ -29,7 +29,10 @@
               In eu placerat libero. Donec elementum viverra libero a mattis. Ut
               scelerisque tempor lorem ut sagittis.
             </b-card-text>
-            <b-button :href="'/taskers/hire?id='+user.id" variant="primary">Hire</b-button>
+
+            <nuxt-link :to="'/taskers/hire?id=' + user.id">
+              <b-button variant="primary">Hire</b-button>
+            </nuxt-link>
           </b-card>
         </b-skeleton-wrapper>
       </div>

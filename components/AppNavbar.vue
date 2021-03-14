@@ -7,8 +7,16 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="/about" :active='$route.name && $route.name.startsWith("about")'>About</b-nav-item>
-          <b-nav-item href="/taskers" :active='$route.name && $route.name.startsWith("taskers")'>Taskers</b-nav-item>
+          <li class="nav-item">
+            <nuxt-link to="/taskers" class="nav-link" active-class="active">
+              Taskers
+            </nuxt-link>
+          </li>
+          <li class="nav-item">
+            <nuxt-link to="/about" class="nav-link" active-class="active">
+              About
+            </nuxt-link>
+          </li>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
