@@ -4,6 +4,7 @@
       v-for="(item, index) of steps"
       :key="index"
       :class="{ active: index <= currentStep }"
+      @click="index<=currentStep?$emit('stepChange',item):null"
     >
       {{ item }}
     </li>
@@ -48,6 +49,9 @@ flex-grow: 1;
   font-weight: bold;
 }
 
+.progressbar li.active {
+  cursor: pointer;
+}
 .progressbar li:after {
   content: "";
   position: absolute;

@@ -30,8 +30,8 @@
               scelerisque tempor lorem ut sagittis.
             </b-card-text>
 
-            <nuxt-link :to="'/taskers/hire?id=' + user.id">
-              <b-button variant="primary">Hire</b-button>
+            <nuxt-link :to="'/taskers/hire?id=' + user.id" class="btn btn-primary">
+              Hire
             </nuxt-link>
           </b-card>
         </b-skeleton-wrapper>

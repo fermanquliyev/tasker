@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container-index">
     <div>
       <Logo />
       <h1 class="title">
-        tasker
+        Tasker-market
       </h1>
       <div class="links">
         <a
@@ -32,7 +32,7 @@ export default {}
 </script>
 
 <style>
-.container {
+.container-index {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;

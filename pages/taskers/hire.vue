@@ -6,6 +6,7 @@
         <step-indicator
           :currentStep="currentStepIndex"
           :steps="steps"
+          @stepChange="setWizardStep($event)"
         ></step-indicator>
       </div>
       <div class="col-md-3"></div>
@@ -162,7 +163,16 @@
           </div>
         </div>
         <div class="payment" v-if="currentStep == 'Payment'">
-          <payment-card-input></payment-card-input>
+          <payment-card-input @change="paymentData=$event"></payment-card-input>
+          <div class="mt-2">
+            <b-button
+              class="float-right"
+              variant="success"
+              v-if="paymentDataState"
+              @click="checkout"
+              >Checkout</b-button
+            >
+          </div>
         </div>
       </div>
       <div class="col-md-4">
@@ -202,6 +212,7 @@ export default {
       taskStep: 0,
       duration: null,
       description: "",
+      paymentData:null,
       durationOptions: [
         { text: "Small (~1hr)", value: 1 },
         { text: "Medium (~3hr)", value: 2 },
@@ -219,6 +230,18 @@ export default {
   methods: {
     setTaskStep(step) {
       this.taskStep = step;
+    },
+    setWizardStep(step){
+      if(this.currentStep!=step){
+        this.currentStep = step;
+      }
+    },
+    checkout(){
+      this.$swal('Tasker hiring completed!').then(
+        result=>{
+          this.$router.push('/');
+        }
+      );
     }
   },
   computed: {
@@ -227,6 +250,9 @@ export default {
     },
     locationState() {
       return this.location.length >= 3;
+    },
+    paymentDataState() {
+      return this.paymentData && this.paymentData.cardNumber &&this.paymentData.cvv && this.paymentData.expDate;
     },
     invalidFeedback() {
       if (this.location.length > 0) {

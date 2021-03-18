@@ -9,33 +9,26 @@
       <i class="fa fa-cc-discover" style="color:orange;"></i>
     </div>
     <label for="cname">Name on Card</label>
-    <input type="text" id="cname" name="cardname" placeholder="John More Doe" />
+    <input type="text" id="cname" name="cardname" placeholder="John More Doe" maxlength="20"/>
     <label for="ccnum">Credit card number</label>
     <input
       v-model.trim="cardNumber"
       type="text"
       id="ccnum"
       name="cardnumber"
+      maxlength="16"
       placeholder="1111-2222-3333-4444"
-    />
-    <label for="expmonth">Exp Month</label>
-    <input
-      type="month"
-      v-model.trim="expMonth"
-      id="expmonth"
-      name="expmonth"
-      placeholder="September"
     />
 
     <div class="row">
       <div class="col-6">
-        <label for="expyear">Exp Year</label>
+        <label for="expmonth">Expire date</label>
         <input
-          type="text"
-          v-model.number="expYear"
-          id="expyear"
-          name="expyear"
-          placeholder="2018"
+          type="month"
+          v-model="expDate"
+          id="expDate"
+          name="expDate"
+          placeholder="Month Year"
         />
       </div>
       <div class="col-6">
@@ -46,6 +39,7 @@
           id="cvv"
           name="cvv"
           placeholder="352"
+          maxlength="3"
         />
       </div>
     </div>
@@ -57,26 +51,36 @@ export default {
   data() {
     return {
       cardNumber: "",
-      expMonth: "",
-      expYear: "",
+      expDate: "",
       cvv: null
     };
   },
   computed: {
-    paypentData() {
+    paymentData() {
       return {
         cardNumber: this.cardNumber,
-        expMonth: this.expMonth,
-        expYear: this.expYear,
+        expDate: this.expDate,
         cvv: this.cvv
       };
     }
+  },
+  watch:{
+    cardNumber(){
+      this.$emit('change',this.paymentData);
+    },
+    expDate(){
+      this.$emit('change',this.paymentData);
+    },
+    cvv(){
+      this.$emit('change',this.paymentData);
+    },
   }
 };
 </script>
 
 <style scoped>
-input[type=text],input[type=month] {
+input[type="text"],
+input[type="month"] {
   width: 100%;
   margin-bottom: 20px;
   padding: 12px;
@@ -94,5 +98,4 @@ label {
   padding: 7px 0;
   font-size: 24px;
 }
-
 </style>
